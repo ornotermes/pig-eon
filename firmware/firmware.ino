@@ -41,7 +41,10 @@ void setup() {
     mdns.begin(WiFi.localIP(), hostname.c_str()); //Initiate mDNS and make it reachable with a .local hostname
     
     //Add mDNS service records to make services discoverable
-    mdns.addServiceRecord( String( mdns_description + " Web Server._http" ).c_str(), 80, MDNSServiceTCP);
+    mdns.addServiceRecord( String( mdns_description + " Web Server._http" ).c_str(), 80, MDNSServiceTCP);//Publish webserver for management
+
+    mdns.addServiceRecord( String( mdns_description + " PulseAudio Sink._pulse-sink" ).c_str(), 4713, MDNSServiceTCP); //Publish sink for PulseAudio module-zeroconf-discover
+    mdns.addServiceRecord( String( mdns_description + " PulseAudio Source._pulse-source" ).c_str(), 4713, MDNSServiceTCP); //Publish source for PulseAudio module-zeroconf-discover
 }
 
 void loop() {
