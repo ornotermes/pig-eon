@@ -1,2 +1,9 @@
 # pig-eon
-Pig-eon - Open Source Amateur Radio Modem
+![pig-eon logo](images/pig-eon.svg)
+An Open Source amateur radio modem targeting ESP32.
+
+## Hardware
+
+## Build
+
+## Software
