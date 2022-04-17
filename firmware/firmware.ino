@@ -37,14 +37,18 @@ void setup() {
         DEBUG_PORT.println("WiFiManager could not connect to WiFi, config portal running");
     }
 
-    DEBUG_PORT.println("Registering mDNS hostname: " + hostname);
+    DEBUG_PORT.println("Registering mDNS hostname: " + hostname + ".local");
     mdns.begin(WiFi.localIP(), hostname.c_str()); //Initiate mDNS and make it reachable with a .local hostname
     
     //Add mDNS service records to make services discoverable
+    DEBUG_PORT.println("Registering mDNS Services:");
     mdns.addServiceRecord( String( mdns_description + " Web Server._http" ).c_str(), 80, MDNSServiceTCP);//Publish webserver for management
+    DEBUG_PORT.println("✅ Web Server");
 
     mdns.addServiceRecord( String( mdns_description + " PulseAudio Sink._pulse-sink" ).c_str(), 4713, MDNSServiceTCP); //Publish sink for PulseAudio module-zeroconf-discover
+    DEBUG_PORT.println("✅ PulseAudio Sink");
     mdns.addServiceRecord( String( mdns_description + " PulseAudio Source._pulse-source" ).c_str(), 4713, MDNSServiceTCP); //Publish source for PulseAudio module-zeroconf-discover
+    DEBUG_PORT.println("✅ PulseAudio Source");
 }
 
 void loop() {
