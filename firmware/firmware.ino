@@ -28,10 +28,15 @@ void setup() {
     //wifiMgr.resetSettings(); //Forget configured wifi settings
 
     wifiMgr.setConfigPortalBlocking(false); //Run WiFiManager as non-blocking
+    wifiMgr.setHostname(hostname);
+    wifiMgr.setDarkMode(true);
+    wifiMgr.setTitle("Pig-eon 🐖🐦");
+    wifiMgr.setDisableConfigPortal(false);
+    wifiMgr.setDebugOutput(true);
 
-    bool res;
     if( wifiMgr.autoConnect(hostname.c_str()) ){ //use hostname as AP name if unable to connect
         DEBUG_PORT.println("WiFiManager connected to WiFi");
+        wifiMgr.startWebPortal();
     }
     else {
         DEBUG_PORT.println("WiFiManager could not connect to WiFi, config portal running");
