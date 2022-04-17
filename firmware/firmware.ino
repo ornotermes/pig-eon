@@ -33,6 +33,7 @@ void setup() {
     wifiMgr.setTitle("Pig-eon 🐖🐦");
     wifiMgr.setDisableConfigPortal(false);
     wifiMgr.setDebugOutput(true);
+    wifiMgr.setHttpPort(8080);
 
     if( wifiMgr.autoConnect(hostname.c_str()) ){ //use hostname as AP name if unable to connect
         DEBUG_PORT.println("WiFiManager connected to WiFi");
@@ -47,8 +48,10 @@ void setup() {
     
     //Add mDNS service records to make services discoverable
     DEBUG_PORT.println("Registering mDNS Services:");
-    mdns.addServiceRecord( String( mdns_description + " Web Server._http" ).c_str(), 80, MDNSServiceTCP);//Publish webserver for management
-    DEBUG_PORT.println("✅ Web Server");
+    mdns.addServiceRecord( String( mdns_description + " Settings._http" ).c_str(), 8080, MDNSServiceTCP);//Publish webserver for management
+    DEBUG_PORT.println("✅ Settings Web Server");
+    mdns.addServiceRecord( String( mdns_description + " App._http" ).c_str(), 80, MDNSServiceTCP);//Publish webserver for management
+    DEBUG_PORT.println("✅ App Web Server");
 
     mdns.addServiceRecord( String( mdns_description + " PulseAudio Sink._pulse-sink" ).c_str(), 4713, MDNSServiceTCP); //Publish sink for PulseAudio module-zeroconf-discover
     DEBUG_PORT.println("✅ PulseAudio Sink");
