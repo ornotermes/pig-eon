@@ -70,7 +70,7 @@ void setup() {
 
     if( wifiMgr.autoConnect(hostname.c_str()) ){ //use hostname as AP name if unable to connect
         DEBUG_PORT.println("WiFiManager connected to WiFi");
-        wifiMgr.startWebPortal();
+        wifiMgr.startWebPortal(); //Start WiFiManagers web portal even if the connection was successful.
     }
     else {
         DEBUG_PORT.println("WiFiManager could not connect to WiFi, config portal running");
