@@ -2,6 +2,9 @@
 #include <WiFiUdp.h>
 #include <MDNS_Generic.h>
 
+#include <AudioTools.h>
+#include <AudioLibs/AudioKit.h>
+
 #define DEBUG_PORT Serial
 
 //set up some strings depending on the build target
@@ -52,6 +55,8 @@ WiFiManager wifiMgr; //WiFiManager manages connections to wireless networks
 
 WiFiUDP udp; //Construct UDP
 MDNS mdns(udp); //Construct mDNS
+
+AudioKitStream kitStream;
 
 void setup() {
     DEBUG_PORT.begin(115200); //Set up serial debug console
